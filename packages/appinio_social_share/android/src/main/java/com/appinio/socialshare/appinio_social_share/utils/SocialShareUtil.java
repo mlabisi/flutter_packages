@@ -202,10 +202,13 @@ public class SocialShareUtil {
             File file = new File(stickerImage);
             Uri stickerImageFile = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file);
 
-            File file1 = new File(backgroundImage);
-            Uri backgroundImageUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file1);
-
             Intent intent = new Intent(FACEBOOK_STORY_PACKAGE);
+            if(backgroundImage!=null){
+                File file1 = new File(backgroundImage);
+                Uri backgroundImageUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file1);
+                intent.setDataAndType(backgroundImageUri, "image/*");
+            }
+
             intent.setType("image/*");
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -214,7 +217,6 @@ public class SocialShareUtil {
             intent.putExtra("content_url", attributionURL);
             intent.putExtra("top_background_color", backgroundTopColor);
             intent.putExtra("bottom_background_color", backgroundBottomColor);
-            intent.setDataAndType(backgroundImageUri, "image/*");
             activity.grantUriPermission(FACEBOOK_PACKAGE, stickerImageFile, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             activity.startActivity(intent);
             return SUCCESS;
