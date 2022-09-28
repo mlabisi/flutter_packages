@@ -55,7 +55,7 @@ class MethodChannelDisableScreenshot extends DisableScreenshotPlatform {
       ByteData? byteData =
           await (image.toByteData(format: ui.ImageByteFormat.png));
       if (byteData != null) {
-        Uint8List pngBytes = byteData.buffer.asUint8List();
+        var pngBytes = byteData.buffer.asUint8List();
         File imgFile = File('$directory/$name.png');
         await imgFile.writeAsBytes(pngBytes);
         return '$directory/$name.png';
@@ -195,7 +195,7 @@ class MethodChannelDisableScreenshot extends DisableScreenshotPlatform {
     String directory = (await getApplicationDocumentsDirectory()).path;
     await (image.toByteData(format: ui.ImageByteFormat.png));
     if (byteData != null) {
-      Uint8List pngBytes = byteData.buffer.asUint8List();
+      var pngBytes = byteData.buffer.asUint8List();
       String path = '$directory/screenshot${filename ?? ""}.png';
       File imgFile = File(path);
       await imgFile.writeAsBytes(pngBytes);
