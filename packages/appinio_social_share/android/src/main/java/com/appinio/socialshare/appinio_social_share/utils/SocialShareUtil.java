@@ -230,6 +230,7 @@ public class SocialShareUtil {
                 File file = new File(stickerImage);
                 Uri stickerImageFile = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file);
                 intent.putExtra("interactive_asset_uri", stickerImageFile);
+                activity.grantUriPermission(packageName, stickerImageFile, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
             intent.putExtra("content_url", attributionURL);
             intent.putExtra("top_background_color", backgroundTopColor);
@@ -238,8 +239,8 @@ public class SocialShareUtil {
                 File file1 = new File(backgroundImage);
                 Uri backgroundImageUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file1);
                 intent.setDataAndType(backgroundImageUri, "image/*");
+                activity.grantUriPermission(packageName, backgroundImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
-            activity.grantUriPermission(packageName, stickerImageFile, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             activity.startActivity(intent);
             return SUCCESS;
         } catch (Exception e) {

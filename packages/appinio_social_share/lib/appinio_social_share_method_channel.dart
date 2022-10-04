@@ -26,7 +26,6 @@ class MethodChannelAppinioSocialShare extends AppinioSocialSharePlatform {
   @override
   Future<Map> getInstalledApps() async {
     var a = await methodChannel.invokeMethod(installedApps);
-    debugPrint(a);
     return a;
   }
 
