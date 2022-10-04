@@ -44,7 +44,7 @@ abstract class DisableScreenshotPlatform extends PlatformInterface {
   }
 
   Future<String?> captureScreenShotFromWidget(Widget widget,
-      {Duration delay: const Duration(milliseconds: 50),
+      {Duration delay = const Duration(milliseconds: 50),
       double? pixelRatio,
       BuildContext? context,
       String? filename}) {

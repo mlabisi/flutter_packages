@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +68,7 @@ class MethodChannelDisableScreenshot extends DisableScreenshotPlatform {
   }
 
   Future<String?> captureScreenShotFromWidget(Widget widget,
-      {Duration delay: const Duration(milliseconds: 50),
+      {Duration delay = const Duration(milliseconds: 50),
       double? pixelRatio,
       BuildContext? context,
       String? filename}) async {
