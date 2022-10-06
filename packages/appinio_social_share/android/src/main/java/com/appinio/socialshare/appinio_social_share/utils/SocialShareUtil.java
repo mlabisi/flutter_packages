@@ -147,23 +147,26 @@ public class SocialShareUtil {
     public String shareToInstagramStory(String stickerImage, String backgroundImage, String backgroundTopColor, String backgroundBottomColor, String attributionURL, Context activity) {
 
         try {
-            File file = new File(stickerImage);
-            Uri stickerImageUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", file);
 
             Intent shareIntent = new Intent(INSTAGRAM_STORY_PACKAGE);
             shareIntent.setType("image/*");
             shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shareIntent.putExtra("interactive_asset_uri", stickerImageUri);
+            if(stickerImage!=null){
+                File file = new File(stickerImage);
+                Uri stickerImageUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", file);
+                shareIntent.putExtra("interactive_asset_uri", stickerImageUri);
+                activity.grantUriPermission("com.instagram.android", stickerImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
             if (backgroundImage != null) {
                 File file1 = new File(backgroundImage);
                 Uri backgroundImageUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", file1);
                 shareIntent.setDataAndType(backgroundImageUri, "image/*");
+                activity.grantUriPermission("com.instagram.android", backgroundImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             }
             shareIntent.putExtra("content_url", attributionURL);
             shareIntent.putExtra("top_background_color", backgroundTopColor);
             shareIntent.putExtra("bottom_background_color", backgroundBottomColor);
-            activity.grantUriPermission("com.instagram.android", stickerImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             activity.startActivity(shareIntent);
             return SUCCESS;
         } catch (Exception e) {
