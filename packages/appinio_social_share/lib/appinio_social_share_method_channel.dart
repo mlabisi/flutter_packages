@@ -110,7 +110,8 @@ class MethodChannelAppinioSocialShare extends AppinioSocialSharePlatform {
   }
 
   @override
-  Future<String> shareToFacebookStory(String appId, {String? stickerImage,
+  Future<String> shareToFacebookStory(String appId,
+      {String? stickerImage,
       String? backgroundImage,
       String? backgroundTopColor,
       String? backgroundBottomColor,

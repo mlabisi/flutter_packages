@@ -44,7 +44,7 @@ class AppinioSocialShare {
       String? backgroundBottomColor,
       String? attributionURL}) {
     return AppinioSocialSharePlatform.instance.shareToInstagramStory(
-        stickerImage:stickerImage,
+        stickerImage: stickerImage,
         backgroundImage: backgroundImage,
         backgroundTopColor: backgroundTopColor,
         backgroundBottomColor: backgroundBottomColor,
@@ -57,9 +57,8 @@ class AppinioSocialShare {
       String? backgroundTopColor,
       String? backgroundBottomColor,
       String? attributionURL}) {
-    return AppinioSocialSharePlatform.instance.shareToFacebookStory(
-        appId,
-        stickerImage:stickerImage,
+    return AppinioSocialSharePlatform.instance.shareToFacebookStory(appId,
+        stickerImage: stickerImage,
         backgroundImage: backgroundImage,
         backgroundTopColor: backgroundTopColor,
         backgroundBottomColor: backgroundBottomColor,
